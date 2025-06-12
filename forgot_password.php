@@ -59,13 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'pabloibaceta07@gmail.com'; // Tu correo
-                    $mail->Password = 'ijrs nmku iswn lgdu'; // Contraseña de aplicación
+                    $mail->Username = 'tu_correo@gmail.com'; 
+                    $mail->Password = 'contraseña_aplicacion'; // Contraseña de aplicación
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port = 465;
 
                     // Configurar correo
-                    $mail->setFrom('pabloibaceta07@gmail.com', 'PixBuy');
+                    $mail->setFrom('tu_correo', 'Nombre de la pagina web');
                     $mail->addAddress($email, $username);
                     $mail->isHTML(true);
                     
