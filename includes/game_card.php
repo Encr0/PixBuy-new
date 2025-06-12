@@ -1,9 +1,17 @@
+<?php
+// Prepara la categoría y consolas antes del HTML
+$category = strtolower(str_replace(
+    [' ', 'á', 'é', 'í', 'ó', 'ú', 'ñ'],
+    ['-', 'a', 'e', 'i', 'o', 'u', 'n'],
+    $game['category'] ?? 'general'
+));
+$consoles = isset($game['consoles']) && is_array($game['consoles']) ? $game['consoles'] : [];
+$data_consoles = strtolower(implode(',', $consoles));
+?>
 <div class="game-card"
-     data-category="<?php echo strtolower(str_replace(
-         [' ', 'á', 'é', 'í', 'ó', 'ú', 'ñ'],
-         ['-', 'a', 'e', 'i', 'o', 'u', 'n'],
-         $game['category'] ?? 'general'
-     )); ?>">
+     data-category="<?php echo $category; ?>"
+     data-consoles="<?php echo strtolower(implode(',', $game['consoles'])); ?>">
+
     <div class="game-image" style="position:relative;">
         <img src="<?php echo htmlspecialchars($game['image']); ?>" 
              alt="Portada de <?php echo htmlspecialchars($game['name']); ?>"
@@ -72,6 +80,7 @@
                 <i class="fas fa-cart-plus"></i>
                 <span>Agregar</span>
             </a>
+            
             <a href="?action=add_to_wishlist&id=<?php echo $game['id']; ?>" 
                class="wishlist-btn" 
                title="Agregar a Wishlist">

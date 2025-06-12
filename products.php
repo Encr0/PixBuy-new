@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 include_once 'includes/products_logic.php';
 
-$mostrados = []; // IDs de juegos ya mostrados
+$mostrados = [];
 
 // Inicializa carrito y wishlist si no existen
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
@@ -86,6 +86,15 @@ $wishlist_count = count($_SESSION['wishlist']);
     <section class="filters-section">
         <div class="filters-bar">
             <input type="text" id="searchInput" placeholder="Buscar juegos..." aria-label="Buscar juegos">
+    <select id="consoleSelect" class="console-select" aria-label="Filtrar por consola">
+        <option value="all">Todas las consolas</option>
+        <option value="switch">Nintendo Switch</option>
+        <option value="pc">PC</option>
+        <option value="xbox">Xbox</option>
+        <option value="playstation">PlayStation</option>
+        <option value="wiiu">Wii U</option>
+    </select>
+
             <div class="filters-btns">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="accion">Acción</button>
@@ -96,6 +105,7 @@ $wishlist_count = count($_SESSION['wishlist']);
             </div>
         </div>
     </section>
+    
 
     <!-- Mensajes -->
     <?php if (isset($message)): ?>
