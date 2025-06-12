@@ -1,5 +1,8 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS ecommerce 
+  CHARACTER SET utf8mb4 
+  COLLATE utf8mb4_spanish_ci;
 
-CREATE DATABASE IF NOT EXISTS ecommerce CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE ecommerce;
 
 -- Tabla de usuarios
@@ -7,10 +10,10 @@ CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
+    fullname VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    telefono VARCHAR(20),
-    direccion TEXT,
+    phone VARCHAR(20),
+    address TEXT,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ultimo_login TIMESTAMP NULL,
     activo BOOLEAN DEFAULT TRUE,
@@ -18,15 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
     reset_expires DATETIME DEFAULT NULL,
     INDEX idx_username (username),
     INDEX idx_email (email)
-);
-
--- Tabla de categorías
-CREATE TABLE IF NOT EXISTS categorias (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    activo BOOLEAN DEFAULT TRUE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Tabla de productos
 CREATE TABLE IF NOT EXISTS productos (
@@ -35,12 +30,10 @@ CREATE TABLE IF NOT EXISTS productos (
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     imagen VARCHAR(255),
-    categoria_id INT,
     stock INT DEFAULT 0,
     activo BOOLEAN DEFAULT TRUE,
-    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE SET NULL ON UPDATE CASCADE
-);
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Tabla de pedidos
 CREATE TABLE IF NOT EXISTS pedidos (
@@ -50,16 +43,16 @@ CREATE TABLE IF NOT EXISTS pedidos (
     estado ENUM('pendiente', 'procesando', 'enviado', 'entregado', 'cancelado') DEFAULT 'pendiente',
     fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     direccion_envio TEXT,
-    FOREIGN KEY (usuario_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+    FOREIGN KEY (usuario_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Tabla de detalles de pedidos
+-- Tabla de detalles de pedido
 CREATE TABLE IF NOT EXISTS detalle_pedidos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pedido_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
     precio_unitario DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
