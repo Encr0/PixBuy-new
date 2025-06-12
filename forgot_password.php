@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Añade estas líneas al inicio para mayor seguridad
 header("Content-Security-Policy: default-src 'self'");
 header("X-Content-Type-Options: nosniff");
 
@@ -17,7 +16,6 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
 
-    // Validación mejorada del email
     if (empty($email)) {
         $errors[] = "El correo electrónico es obligatorio.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -52,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $update_stmt->close();
 
                 // Configurar y enviar correo
-                $reset_link = "http://localhost/reset_password.php?token=$token";
+                $reset_link = "http://localhost/PixBuy/reset_password.php?token=$token";
                 
                 try {
                     $mail = new PHPMailer(true);

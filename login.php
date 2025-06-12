@@ -53,10 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 session_regenerate_id(true);
                 
                 // Registrar último login (opcional)
-                $update_stmt = $mysqli->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
+                $update_stmt = $mysqli->prepare("UPDATE users SET ultimo_login = NOW() WHERE id = ?");
                 $update_stmt->bind_param("i", $user_id);
                 $update_stmt->execute();
                 $update_stmt->close();
+
+
                 
                 // Redirigir a página de productos
                 header("Location: products.php");

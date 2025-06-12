@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         
         // Insertar usuario en la base de datos con prepared statement
-        $stmt = $mysqli->prepare("INSERT INTO users (username, password, fullname, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
+       $stmt = $mysqli->prepare("INSERT INTO users (username, password, fullname, email, phone, address) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $username, $password_hash, $fullname, $email, $phone, $address);
         
         if ($stmt->execute()) {
