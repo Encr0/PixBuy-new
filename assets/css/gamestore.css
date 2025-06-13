@@ -595,4 +595,26 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
+    background: #181a1b;
+    border-radius: 16px;
+    box-shadow: 0 0 24px #39ff1422;
+}
+
+.console-select {
+    padding: 0.5em 1em;
+    border: 2px solid var(--neon-green, #39ff14);
+    border-radius: 8px;
+    background: linear-gradient(90deg, #181a1b 0%, #232526 100%);
+    color: var(--neon-green, #39ff14);
+    font-size: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    outline: none;
+    font-family: 'Orbitron', 'Roboto', Arial, sans-serif;
+    box-shadow: 0 0 12px #39ff1422;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.console-select:focus {
+    border-color: var(--neon-green, #39ff14);
+    box-shadow: 0 0 24px #39ff14;
 }
