@@ -55,12 +55,12 @@ if (isset($_GET['token']) && !empty($_GET['token'])) {
                         $mail->isSMTP();
                         $mail->Host = 'smtp.gmail.com';
                         $mail->SMTPAuth = true;
-                        $mail->Username = 'pixbuychile@gmail.com'; // tu correo Gmail
-                        $mail->Password = 'ylfb wrsv vwqx njrw'; // tu contraseña de aplicación
+                        $mail->Username = 'tu_correo@gmail.com'; // tu correo Gmail
+                        $mail->Password = 'contraseña_aplicacion'; // tu contraseña de aplicación
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                         $mail->Port = 465;
 
-                        $mail->setFrom('pixbuychile@gmail.com', 'PixBuy');
+                        $mail->setFrom('tu_correo@gmail.com', 'nombre de la tienda');
                         $mail->addAddress($user_email, $user_fullname);
                         $mail->isHTML(true);
                         $mail->Subject = 'Tu contraseña ha sido modificada - PixBuy';
