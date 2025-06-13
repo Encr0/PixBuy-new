@@ -59,13 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'pixbuychile@gmail.com'; // Tu correo
-                    $mail->Password = 'ylfb wrsv vwqx njrw'; // Contraseña de aplicación
+                    $mail->Username = 'tu_correo@gmail.com'; // Tu correo
+                    $mail->Password = 'contraseña_aplicacion'; // Contraseña de aplicación
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port = 465;
 
                     // Configurar correo
-                    $mail->setFrom('pixbuychile@gmail.com', 'PixBuy');
+                    $mail->setFrom('tu_correo@gmail.com', 'nombre de la tienda');
                     $mail->addAddress($email, $username);
                     $mail->isHTML(true);
                     
